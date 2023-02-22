@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   add_flash_types :info, :error, :success
+  
   def after_sign_up_path_for(resource)
     sign_in(resource)
     flash[:success] = "Account created and signed in"
