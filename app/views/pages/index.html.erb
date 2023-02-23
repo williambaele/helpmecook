@@ -1,4 +1,12 @@
 <%= render 'shared/home-banner'%>
 <div class="flex grid mx-auto container">
-
+  <div class="grid">
+    <% @recipes.each do |item| %>
+    <ul>
+      <li><%= item.title %></li>
+      <li><%= item.description %></li>
+      <li><%= item.user_id %></li>
+    </ul>
+    <% end %>
+  </div>
 </div>
