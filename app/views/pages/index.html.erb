@@ -1,12 +1,27 @@
 <%= render 'shared/home-banner'%>
-<div class="flex grid mx-auto container">
-  <div class="grid">
-    <% @recipes.each do |item| %>
-    <ul>
-      <li><%= item.title %></li>
-      <li><%= item.description %></li>
-      <li><%= item.user_id %></li>
-    </ul>
-    <% end %>
-  </div>
+<div class="flex justify-center items-center h-20">
+  <h2 class="text-center text-gray-800 text-4xl font-medium">Check our last recipes</h2>
+</div>
+<div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0">
+  <% @recipes.each do |item| %>
+  <!-- RECIPE'S CARD -->
+    <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+      <img alt="Office" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
+      <div class="bg-white p-4 sm:p-6">
+        <time datetime="2022-10-10" class="block text-xs text-gray-500">
+          <%= item.created_at.strftime("%d %b %Y") %> || <%= item.user_id %>
+        </time>
+
+        <a href="#">
+          <h3 class="mt-0.5 text-lg text-gray-900">
+            <%= item.title %>
+          </h3>
+        </a>
+        <p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
+          <%= item.description %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+  <!-- END -->
 </div>
