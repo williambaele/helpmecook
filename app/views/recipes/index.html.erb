@@ -12,22 +12,21 @@
     <% @recipes.each do |item| %>
     <!-- RECIPE'S CARD -->
       <div class="overflow-hidden  shadow transition hover:shadow-lg">
-        <img alt="Office" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
-        <div class="bg-white p-4 sm:p-6">
-          <time datetime="2022-10-10" class="block text-xs text-gray-500">
-            <%= item.created_at.strftime("%d %b %Y") %> || <%= item.user_id %>
-          </time>
-
-          <a href="#">
+        <%= link_to recipe_path(item) do %>
+          <img alt="recipe" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
+          <div class="bg-white p-4 sm:p-6">
+            <p>
+              <%= item.created_at.strftime("%d %b %Y") %> || <%= item.user_id %>
+            </p>
             <h3 class="mt-0.5 text-lg text-gray-900">
               <%= item.title %>
             </h3>
-          </a>
-          <p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-            <%= item.description %>
-          </p>
+            <p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
+              <%= item.description %>
+            </p>
+          </div>
+      <% end %>
         </div>
-      </div>
     <% end %>
     <!-- END -->
   </div>
