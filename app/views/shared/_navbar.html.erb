@@ -7,9 +7,11 @@
     <% end %>
     <div class="flex gap-x-4 items-center">
       <% if user_signed_in? %>
-        <button class="bg-orange-600 px-2 md:px-6 py-1.4 md:py-2 text-gray-100 md:font-medium">
-          Publish
-        </button>
+        <%= link_to new_recipes_path do %>
+          <button class="bg-orange-600 px-2 md:px-6 py-1.4 md:py-2 text-gray-100 md:font-medium">
+            Publish
+          </button>
+        <% end %>
         <%= link_to edit_user_registration_path do %>
           <div class="bg-orange-600 px-2 md:px-2 py-1.4 md:py-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#FFFF" class="bi bi-person-circle" viewBox="0 0 16 16">

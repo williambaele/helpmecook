@@ -1,0 +1,7 @@
+<div class="flex mx-auto justify-center my-10 gap-2">
+  <%= form_for @recipe do |f| %>
+    <%= f.text_field :title, class:"w-full px-2 py-2 text-gray-700 bg-gray-200 rounded", placeholder: "Title" %>
+    <%= f.text_field :description, class:"w-full px-2 py-2 text-gray-700 bg-gray-200 rounded", placeholder: "Descritpion" %>
+    <%= f.submit "Submit", class:"px-4 py-2 text-gray-200 bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700" %>
+  <% end %>
+</div>
