@@ -1,16 +1,16 @@
 <div class="flex justify-center items-center h-20">
   <h2 class="text-center text-gray-800 text-4xl font-medium">Check our last recipes</h2>
 </div>
-<div class="relative my-6">
+<div class="relative my-6 px-4">
   <%= form_with url: recipes_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "items-center inset-y-0 left-0 form-control w-full p-3 pl-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-slate-700 focus:border-slate-700  dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-700 dark:focus:border-slate-700", placeholder: "Search by tilte or content"%>
-    <%= submit_tag "Search", class: "absolute right-1 bottom-1.5 text-white bg-[#082032] hover:bg-slate-700 font-medium rounded-lg text-sm px-4 py-2" %>
+    <%= text_field_tag :query, params[:query], class: "items-center inset-y-0 left-0 form-control w-full p-3 pl-4 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-orange-600 focus:border-orange-600 px-4", placeholder: "Find my today's meal"%>
+    <%= submit_tag "Search", class: "cursor-pointer absolute right-5 bottom-1.5 text-white bg-orange-600 hover:bg-orange-500 font-medium text-sm px-4 py-2" %>
   <% end %>
 </div>
 <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10">
   <% @recipes.each do |item| %>
   <!-- RECIPE'S CARD -->
-    <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+    <div class="overflow-hidden  shadow transition hover:shadow-lg">
       <img alt="Office" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
       <div class="bg-white p-4 sm:p-6">
         <time datetime="2022-10-10" class="block text-xs text-gray-500">
