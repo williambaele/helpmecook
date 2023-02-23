@@ -1,43 +1,63 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<section class="min-h-screen flex flex-col">
+  <div class="flex flex-1 items-center justify-center">
+    <div class="rounded-lg sm:border-2 px-6 lg:px-6 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-900">
+          Edit your account
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="py-2 text-left">
+            <%= f.text_field :last_name, placeholder:"John", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+          </div>
+          <div class="py-2 text-left">
+            <%= f.text_field :first_name, placeholder:"Doe", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+          </div>
+          <div class="py-2 text-left">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"email@helpmecook.com", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+          </div>
+          <div class="py-2 text-left">
+            <%= f.text_field :pseudo, placeholder:"Pseudo", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+          </div>
+          <div class="col-span-1 md:col-span-2">
+            <div class="flex gap-x-2">
+              <input type="checkbox">
+              <p class=" text-left">Do you want to change your password ?</p>
+            </div>
+            <div class="py-2 text-left check-on">
+              <%= f.password_field :password, autocomplete: "new-password", placeholder:"New password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            </div>
+            <div class="py-2 text-left check-on">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"New password confirmation", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            </div>
+          </div>
+          <div class="py-2 text-left md:col-span-2">
+            <p class=" text-left mb-2">We need your current password to confirm changes</p>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Current password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+          </div>
+        </div>
+        <div class="py-2 actions">
+          <%= f.submit "Update", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-orange-500" %>
+        </div>
+        <% end %>
+        <div class="text-center mt-6">
+          <span>
+            <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+          </span>
+        </div>
+    </div>
   </div>
+</section>
+<script>
+const checkbox = document.querySelector('input[type="checkbox"]');
+const checkOnDivs = document.querySelectorAll('.check-on');
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+checkOnDivs.forEach(div => div.style.display = 'none');
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+checkbox.addEventListener('change', function() {
+  if(this.checked) {
+    checkOnDivs.forEach(div => div.style.display = 'block');
+  } else {
+    checkOnDivs.forEach(div => div.style.display = 'none');
+  }
+});
+</script>
