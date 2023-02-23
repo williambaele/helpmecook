@@ -19,11 +19,11 @@
           </div>
         <% end %>
         <% else %>
-        <button class="bg-orange-600 px-2 md:px-6 py-2 md:py-3 text-gray-100 md:font-medium">
-          <%= link_to new_user_session_path  do %>
+        <%= link_to new_user_session_path  do %>
+          <button class="bg-orange-600 px-2 md:px-6 py-2 md:py-3 text-gray-100 md:font-medium">
             Login
-          <% end %>
-        </button>
+          </button>
+        <% end %>
       <% end %>
     </div>
   </div>
