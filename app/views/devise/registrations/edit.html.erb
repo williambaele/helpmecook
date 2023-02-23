@@ -7,10 +7,10 @@
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="py-2 text-left">
-            <%= f.text_field :last_name, placeholder:"John", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.text_field :last_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
           </div>
           <div class="py-2 text-left">
-            <%= f.text_field :first_name, placeholder:"Doe", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.text_field :first_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
           </div>
           <div class="py-2 text-left">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"email@helpmecook.com", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
@@ -23,16 +23,16 @@
               <input type="checkbox">
               <p class=" text-left">Do you want to change your password ?</p>
             </div>
-            <div class="py-2 text-left check-on">
+            <div class="py-2 text-left check-on field">
               <%= f.password_field :password, autocomplete: "new-password", placeholder:"New password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
             </div>
-            <div class="py-2 text-left check-on">
+            <div class="py-2 text-left check-on field">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"New password confirmation", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
             </div>
           </div>
-          <div class="py-2 text-left md:col-span-2">
+          <div class="py-2 text-left md:col-span-2 field">
             <p class=" text-left mb-2">We need your current password to confirm changes</p>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Current password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.password_field :current_password, autocomplete: "current-password",placeholder:"Current password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
           </div>
         </div>
         <div class="py-2 actions">
@@ -44,6 +44,16 @@
             <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
           </span>
         </div>
+        <% if resource.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li class="text-red-400"><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
