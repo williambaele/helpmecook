@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   validates :title, :description, :people, :time, :budget, :recipe_type, presence: true
-  validates :descritpion, length: { minimum: 50, maximum: 500 }
+  validates :description, length: { minimum: 50, maximum: 500 }
   validates :title, length: { minimum: 10, maximum: 100 }
 
   belongs_to :user
