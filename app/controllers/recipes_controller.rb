@@ -19,7 +19,7 @@ class RecipesController < ApplicationController
     @recipe.user_id = current_user.id
     if @recipe.save
       flash[:success] = "Your recipe has been created"
-      redirect_to root_path
+      redirect_to recipe_path(@recipe)
     else
       flash[:alert] = "Error ! Try again"
       render :new, status: :unprocessable_entity

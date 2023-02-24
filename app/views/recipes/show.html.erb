@@ -4,13 +4,14 @@
       <img alt="recipe" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="object-cover max-h-96 w-full"/>
     </div>
     <div class="md:col-span-1 h-full bg-gray-300">
-      <div class="p-4 bg-red-200">
+      <div class="p-5">
         <h2 class="text-gray-800 text-3xl">Technical card</h2>
         <div class="grid gap-y-4 mt-6">
-          <p>Time: 10 minutes</p>
-          <p>Difficulty: 1/5</p>
-          <p>Budget: Low</p>
-          <p>Type: Dessert</p>
+          <p class="pb-1 border-b-2 border-gray-200">Time: <%= @recipe.time %> minutes</p>
+          <p class="pb-1 border-b-2 border-gray-200">Difficulty: <%= @recipe.difficulty %>/10</p>
+          <p class="pb-1 border-b-2 border-gray-200">Budget: <%= @recipe.budget %></p>
+          <p class="pb-1 border-b-2 border-gray-200">Type: <%= @recipe.recipe_type %></p>
+          <p>Nb of people: <%= @recipe.people %></p>
         </div>
       </div>
     </div>
