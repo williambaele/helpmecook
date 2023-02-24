@@ -1,20 +1,20 @@
-<section class="my-10 flex flex-col">
-  <div class="flex flex-1 items-center justify-center">
-      <div class="px-4 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
-          <%= form_for @recipe do |f| %>
-              <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-900">
-                Create your new recipe
-              </h1>
-              <div class="py-2 text-left">
-                <%= f.text_field :title, placeholder:"Banana cake", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
-              </div>
-              <div class="py-2 text-left">
-                <%= f.text_field :description, placeholder:"Delicious banana cake's recipe herited by my grandma", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
-              </div>
-              <div class="py-2 actions">
-                <%= f.submit "Submit", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-orange-500" %>
-              </div>
-          <% end %>
+<div class="my-10">
+  <div class=" container mx-auto w-1/2">
+    <%= form_for @recipe do |f| %>
+      <div class="grid grid-cols-1 md:grid-cols-4 text-center px-4 md:px-0 gap-2">
+        <h1 class="col-span-1 md:col-span-4 font-bold text-3xl mb-8  text-gray-900">
+          Create your new recipe
+        </h1>
+        <div class="col-span-1 md:col-span-4 py-2 text-left">
+          <%= f.text_field :title, placeholder:"Banana cake", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 focus:border-gray-700" %>
+        </div>
+        <div class="col-span-1 md:col-span-4 py-2 text-left">
+          <%= f.text_area :description, placeholder:"Delicious banana cake's recipe herited by my grandma", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 focus:border-gray-700" %>
+        </div>
+        <div class="col-span-1 md:col-span-4 py-2 actions">
+          <%= f.submit "Submit", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2 focus:border-gray-700 hover:bg-orange-500" %>
+        </div>
       </div>
+    <% end %>
   </div>
-</section>
+</div>
