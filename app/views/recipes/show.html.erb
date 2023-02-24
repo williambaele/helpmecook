@@ -5,13 +5,14 @@
     </div>
     <div class="md:col-span-1 h-full bg-gray-300">
       <div class="p-5">
-        <h2 class="text-gray-800 text-3xl">Technical card</h2>
-        <div class="grid gap-y-4 mt-6">
+        <h2 class="text-gray-800 text-3xl">Recipe's card</h2>
+        <div class="grid gap-y-5 mt-6">
           <p class="pb-1 border-b-2 border-gray-200">Time: <%= @recipe.time %> minutes</p>
           <p class="pb-1 border-b-2 border-gray-200">Difficulty: <%= @recipe.difficulty %>/10</p>
           <p class="pb-1 border-b-2 border-gray-200">Budget: <%= @recipe.budget %></p>
           <p class="pb-1 border-b-2 border-gray-200">Type: <%= @recipe.recipe_type %></p>
-          <p>Nb of people: <%= @recipe.people %></p>
+          <p class="pb-1 border-b-2 border-gray-200">Nb of people: <%= @recipe.people %></p>
+          <p>Author: <%= @author %></p>
         </div>
       </div>
     </div>

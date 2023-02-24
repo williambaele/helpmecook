@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.includes(:user)
     @total_recipes = Recipe.count
     if params[:query].present?
       @recipes = Recipe.search_by_title_description(params[:query])
@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   end
   def show
     @recipe = Recipe.find(params[:id])
+    @author = @recipe.user.pseudo
   end
   def new
     @recipe = Recipe.new
