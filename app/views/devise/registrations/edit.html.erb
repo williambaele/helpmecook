@@ -1,22 +1,22 @@
 <section class="min-h-screen flex flex-col">
   <div class="flex flex-1 items-center justify-center">
-    <div class="rounded-lg sm:border-2 px-6 lg:px-6 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
+    <div class="sm:border-2 px-6 lg:px-6 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-900">
           Edit your account
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div class="py-2 text-left">
-            <%= f.text_field :last_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.text_field :last_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
           <div class="py-2 text-left">
-            <%= f.text_field :first_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.text_field :first_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
           <div class="py-2 text-left">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"email@helpmecook.com", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"email@helpmecook.com", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
           <div class="py-2 text-left">
-            <%= f.text_field :pseudo, placeholder:"Pseudo", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.text_field :pseudo, placeholder:"Pseudo", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
           <div class="col-span-1 md:col-span-2">
             <div class="flex gap-x-2">
@@ -24,19 +24,19 @@
               <p class=" text-left">Do you want to change your password ?</p>
             </div>
             <div class="py-2 text-left check-on field">
-              <%= f.password_field :password, autocomplete: "new-password", placeholder:"New password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder:"New password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
             </div>
             <div class="py-2 text-left check-on field">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"New password confirmation", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"New password confirmation", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
             </div>
           </div>
           <div class="py-2 text-left md:col-span-2 field">
             <p class=" text-left mb-2">We need your current password to confirm changes</p>
-            <%= f.password_field :current_password, autocomplete: "current-password",placeholder:"Current password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700" %>
+            <%= f.password_field :current_password, autocomplete: "current-password",placeholder:"Current password", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
         </div>
         <div class="py-2 actions">
-          <%= f.submit "Update", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-orange-500" %>
+          <%= f.submit "Update", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2  focus:border-gray-700 hover:bg-orange-500" %>
         </div>
         <% end %>
         <div class="text-center mt-6">

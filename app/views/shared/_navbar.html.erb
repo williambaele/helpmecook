@@ -8,19 +8,30 @@
     <div class="flex gap-x-4 items-center">
       <% if user_signed_in? %>
         <%= link_to new_recipe_path do %>
-          <button class="bg-orange-600 px-2 md:px-6 py-1.4 md:py-2 text-gray-100 md:font-medium">
+          <button class="bg-orange-600 px-2 md:px-6 py-2 md:py-2 text-gray-100 md:font-medium hover:bg-orange-500">
             Publish
           </button>
         <% end %>
-        <%= link_to edit_user_registration_path do %>
-          <div class="bg-orange-600 px-2 md:px-2 py-1.4 md:py-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#FFFF" class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
-          </div>
-            <%= link_to "X", destroy_user_session_path, data: {turbo_method: :delete} %>
-        <% end %>
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-orange-600 hover:bg-orange-500 font-medium text-sm px-4 py-2.5 text-center inline-flex items-center" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+          </svg>
+          <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+        <!-- Dropdown menu -->
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+              <li>
+                <%= link_to edit_user_registration_path do %>
+                  <p class="block px-4 py-2 hover:bg-gray-100">My account</p>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+                  <p class="block px-4 py-2 hover:bg-gray-100">Log out</p>
+                <% end %>
+              </li>
+            </ul>
+        </div>
         <% else %>
         <%= link_to new_user_session_path  do %>
           <button class="bg-orange-600 px-2 md:px-6 py-2 md:py-3 text-gray-100 md:font-medium">
