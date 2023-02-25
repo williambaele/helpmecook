@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.recipe_id = @recipe.id
     if @comment.save
       flash[:success] = "Your comment has been posted"
-      redirect_to root_path
+      redirect_to recipe_path(@recipe)
     else
       flash[:alert] = @comment.errors.full_messages
       render :show, status: :unprocessable_entity

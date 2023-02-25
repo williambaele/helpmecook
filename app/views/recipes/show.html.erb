@@ -41,24 +41,28 @@
           <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (12)</h2>
         </div>
         <%= form_for @comment do |f| %>
-          <div class="py-2 px-4 mb-4 bg-white border border-gray-200">
+          <div>
             <%= f.hidden_field :recipe_id, value: @recipe.id %>
-            <%= f.text_area :content, rows: 5, class:"px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none", placeholder: "Write a comment" %>
+            <%= f.text_area :content, rows: 3, class:"px-0 w-full text-sm text-gray-900 focus:outline-none py-2 px-4 mb-2 bg-white border border-gray-200", placeholder: "Write a comment" %>
+            <%= f.number_field :rating, in: 1..5, step: 0.5, placeholder: "Rating (/5)", class:"bg-white border border-gray-200 focus:outline-none bg-white block w-full py-2 px-4 focus:border-gray-700 text-sm text-gray-900 mb-4" %>
           </div>
-          <%= f.submit "Submit", class:"inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 hover:bg-orange-500" %>
+          <%= f.submit "Submit your comment", class:"inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 hover:bg-orange-500" %>
         <% end %>
       <!-- COMMENT -->
       <div class="mt-10">
       <% @comments.each do |item| %>
         <article class="pl-4 mb-6 text-base">
           <div class="flex justify-between items-center mb-2">
-            <div class="flex items-center">
+            <div class="flex items-center gap-4">
               <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                 <img class="mr-2 w-6 h-6 rounded-full" src="https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg" alt="Michael Gough">
                 <%= @author %>
               </p>
               <p class="text-sm text-gray-600 dark:text-gray-400">
                 <%= item.created_at.strftime("%d %b %Y") %>
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <%= item&.rating %>/5
               </p>
             </div>
           </div>
