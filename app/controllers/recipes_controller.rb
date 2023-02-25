@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
     @author = @recipe.user.pseudo
     @comments = @recipe.comments
     @comment = Comment.new # Initialize @comment variable with a new Comment object
+    @total_comments = @recipe.comments.count
   end
   def new
     @recipe = Recipe.new

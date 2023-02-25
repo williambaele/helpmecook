@@ -38,13 +38,13 @@
     <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 px-4 md:px-0">
       <div class="w-full md:w-3/4">
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (12)</h2>
+          <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (<%= @total_comments %>)</h2>
         </div>
         <%= form_for @comment do |f| %>
           <div>
             <%= f.hidden_field :recipe_id, value: @recipe.id %>
-            <%= f.text_area :content, rows: 3, class:"px-0 w-full text-sm text-gray-900 focus:outline-none py-2 px-4 mb-2 bg-white border border-gray-200", placeholder: "Write a comment" %>
-            <%= f.number_field :rating, in: 1..5, step: 0.5, placeholder: "Rating (/5)", class:"bg-white border border-gray-200 focus:outline-none bg-white block w-full py-2 px-4 focus:border-gray-700 text-sm text-gray-900 mb-4" %>
+            <%= f.text_area :content, rows: 3, class:"pt-2 pl-4 px-0 w-full text-sm text-gray-900 focus:outline-none py-2 px-4 mb-2 bg-white border border-gray-200", placeholder: "Write a comment" %>
+            <%= f.number_field :rating, in: 1..5, step: 1, placeholder: "Rating (/5)", class:"bg-white border border-gray-200 focus:outline-none bg-white block w-full py-2 px-4 focus:border-gray-700 text-sm text-gray-900 mb-4" %>
           </div>
           <%= f.submit "Submit your comment", class:"inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 hover:bg-orange-500" %>
         <% end %>
