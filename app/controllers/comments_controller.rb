@@ -7,13 +7,14 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(items_params)
     @comment.user_id = current_user.id
-    @comment.recipe =  Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:comment][:recipe_id])
+    @comment.recipe_id = @recipe.id
     if @comment.save
       flash[:success] = "Your comment has been posted"
       redirect_to root_path
     else
-      flash[:alert] = "Error ! Try again"
-      render :new, status: :unprocessable_entity
+      flash[:alert] = @comment.errors.full_messages
+      render :show, status: :unprocessable_entity
     end
   end
 
