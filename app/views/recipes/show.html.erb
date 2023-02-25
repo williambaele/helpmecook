@@ -47,7 +47,7 @@
     <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 px-4 md:px-0">
       <div class="w-full md:w-3/4">
         <div class="flex justify-between items-center mb-6">
-          <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (<%= @total_comments %>)</h2>
+          <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Discussion (<%= @total_comments %>)</h2>
         </div>
         <%= form_for @comment do |f| %>
           <div>
@@ -69,21 +69,21 @@
                   <%= @author %>
                 </p>
               </div>
-              <p class="text-sm text-gray-600">
+              <p class="text-sm text-gray-600 dark:text-gray-400">
                 <%= item.created_at.strftime("%d %b %Y") %>
               </p>
               <div class="flex">
-                <% 5.times do |i| %>
-                  <% if item && item.rating.try(:>, i) %>
-                    <svg aria-hidden="true" class="w-6 h-6 text-yellow-400" fill="#ea580c" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Star <%= i+1 %></title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                  <% else %>
-                    <svg aria-hidden="true" class="w-6 h-6 text-yellow-400" fill="#d4d4d4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Star <%= i+1 %></title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                  <% end %>
-                <% end %>
+              <% 5.times do |i| %>
+              <% if item && item.rating.try(:>, i) %>
+                <svg aria-hidden="true" class="w-6 h-6 text-yellow-400" fill="#ea580c" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Star <%= i+1 %></title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <% else %>
+                <svg aria-hidden="true" class="w-6 h-6 text-yellow-400" fill="#d4d4d4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Star <%= i+1 %></title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <% end %>
+            <% end %>
               </div>
             </div>
           </div>
-          <p class="text-gray-500">
+          <p class="text-gray-500 dark:text-gray-400">
             <%= item.content %>
           </p>
         </article>
