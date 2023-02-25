@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
   def items_params
     params.require(:comment).permit(:content, :rating)
   end
