@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @author = @recipe.user.pseudo
+    @comments = @recipe.comments
     @comment = Comment.new # Initialize @comment variable with a new Comment object
   end
   def new

@@ -39,32 +39,34 @@
       <div class="w-full md:w-3/4">
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (12)</h2>
-      </div>
-      <%= form_for @comment do |f| %>
-        <div class="py-2 px-4 mb-4 bg-white border border-gray-200">
-          <%= f.hidden_field :recipe_id, value: @recipe.id %>
-          <%= f.text_area :content, rows: 5, class:"px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none", placeholder: "Write a comment" %>
         </div>
-        <%= f.submit "Submit", class:"inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 hover:bg-orange-500" %>
-      <% end %>
+        <%= form_for @comment do |f| %>
+          <div class="py-2 px-4 mb-4 bg-white border border-gray-200">
+            <%= f.hidden_field :recipe_id, value: @recipe.id %>
+            <%= f.text_area :content, rows: 5, class:"px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none", placeholder: "Write a comment" %>
+          </div>
+          <%= f.submit "Submit", class:"inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-orange-600 hover:bg-orange-500" %>
+        <% end %>
       <!-- COMMENT -->
       <div class="mt-10">
-      <article class="pl-4 mb-6 text-base">
-        <div class="flex justify-between items-center mb-2">
+      <% @comments.each do |item| %>
+        <article class="pl-4 mb-6 text-base">
+          <div class="flex justify-between items-center mb-2">
             <div class="flex items-center">
-                <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                        class="mr-2 w-6 h-6 rounded-full"
-                        src="https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg"
-                        alt="Michael Gough">Michael Gough</p>
-                <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                        title="February 8th, 2022">Feb. 8, 2022</time></p>
+              <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                <img class="mr-2 w-6 h-6 rounded-full" src="https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg" alt="Michael Gough">
+                <%= @author %>
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <%= item.created_at.strftime("%d %b %Y") %>
+              </p>
             </div>
-        </div>
-        <p class="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
-            instruments for the UX designers. The knowledge of the design tools are as important as the
-            creation of the design strategy.
-        </p>
-      </article>
+          </div>
+          <p class="text-gray-500 dark:text-gray-400">
+            <%= item.content %>
+          </p>
+        </article>
+        <% end %>
       </div>
    </section>
 </div>
