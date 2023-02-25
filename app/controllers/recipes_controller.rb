@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
     @comments = @recipe.comments
     @comment = Comment.new # Initialize @comment variable with a new Comment object
     @total_comments = @recipe.comments.count
+    @rating_global = @comments.average(:rating) || 0
   end
   def new
     @recipe = Recipe.new
