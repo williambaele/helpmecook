@@ -4,6 +4,9 @@ class RecipesController < ApplicationController
     @total_recipes = Recipe.count
     if params[:query].present?
       @recipes = Recipe.search_by_title_description(params[:query])
+      if @recipes.empty?
+        flash[:alert] = "No results found for '#{params[:query]}'"
+      end
     else
       @recipes
     end
