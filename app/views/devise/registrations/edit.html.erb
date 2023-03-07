@@ -1,10 +1,13 @@
-<section class="min-h-screen flex flex-col">
+<section class="min-h-screen my-6 flex flex-col">
   <div class="flex flex-1 items-center justify-center">
     <div class="sm:border-2 px-6 lg:px-6 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <h1 class="font-bold tracking-wider text-3xl mb-8 w-full text-gray-900">
           Edit your account
         </h1>
+        <div class="justify-center flex mb-6">
+          <%= cl_image_tag current_user.photo.key , class:"object-cover max-h-40 w-fill" %>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div class="py-2 text-left">
             <%= f.text_field :last_name, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
@@ -17,6 +20,10 @@
           </div>
           <div class="py-2 text-left">
             <%= f.text_field :pseudo, placeholder:"Pseudo", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
+          </div>
+          <div class="py-2 md:col-span-2">
+            <%= f.label "Change your profile picture", class:"text-left flex text-md mb-2"%>
+            <%= f.file_field :photo, accept:"image/png,image/jpeg", class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4  focus:border-gray-700" %>
           </div>
           <div class="col-span-1 md:col-span-2">
             <div class="flex gap-x-2">
