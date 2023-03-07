@@ -33,6 +33,10 @@
           <p class="text-md font-medium text-gray-700 mb-2">Budget</p>
           <%= f.select :budget, options_for_select(['Cheap', 'Economic', 'Middle', 'Expensive', 'Fancy']), {}, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 focus:border-gray-700" %>
         </div>
+        <div class="col-span-1 md:col-span-4 py-2 text-left">
+          <p class="text-md font-medium text-gray-700 mb-2">Budget</p>
+          <%= f.file_field :photo, class:"bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 focus:border-gray-700" %>
+        </div>
         <div class="col-span-1 md:col-span-4 py-2 actions">
           <%= f.submit "Submit", class:"cursor-pointer border-2 border-gray-100 focus:outline-none bg-orange-600 text-white font-bold tracking-wider block w-full p-2 focus:border-gray-700 hover:bg-orange-500" %>
         </div>

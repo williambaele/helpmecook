@@ -9,6 +9,9 @@ gem 'devise'
 #PG SEARCH
 gem 'pg_search'
 
+#Cloudinary
+gem "cloudinary"
+
 #Img
 gem "dotenv-rails", groups: [:development, :test]
 

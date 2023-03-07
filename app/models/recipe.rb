@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  has_one_attached :photo
   validates :title, :description, :people, :time, :budget, :recipe_type, presence: true
   validates :description, length: { minimum: 50, maximum: 500 }
   validates :title, length: { minimum: 10, maximum: 100 }
