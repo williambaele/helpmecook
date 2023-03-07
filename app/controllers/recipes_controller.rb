@@ -45,10 +45,13 @@ class RecipesController < ApplicationController
   end
   def new
     @recipe = Recipe.new
+    authorize @recipe
   end
   def create
     @recipe = Recipe.new(items_params)
     @recipe.user_id = current_user.id
+    authorize @recipe
+
     if @recipe.save
       flash[:success] = "Your recipe has been created"
       redirect_to recipe_path(@recipe)

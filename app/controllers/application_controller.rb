@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   add_flash_types :info, :error, :success
   before_action :configure_permitted_parameters, if: :devise_controller?
   def configure_permitted_parameters
@@ -23,5 +25,12 @@ class ApplicationController < ActionController::Base
     flash[:success] = 'Logged in'
     root_path
   end
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  private
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_back(fallback_location: root_path)
+  end
 end
