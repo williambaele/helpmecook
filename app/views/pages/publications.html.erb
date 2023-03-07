@@ -2,7 +2,7 @@
   <div class="my-10">
     <h1 class="text-3xl font-medium text-center">All your publications</h1>
   </div>
-  <% if @recipe.nil? %>
+  <% if @recipes.empty? %>
     <div class="grid justify-center gap-8">
       <h2>You don't have any publicatrions yet</h2>
       <%= link_to new_recipe_path do %>
