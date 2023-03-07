@@ -21,6 +21,11 @@
         <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
               <li>
+                <%= link_to my_publications_path do %>
+                  <p class="block px-4 py-2 hover:bg-gray-100">My publications</p>
+                <% end %>
+              </li>
+              <li>
                 <%= link_to edit_user_registration_path do %>
                   <p class="block px-4 py-2 hover:bg-gray-100">My account</p>
                 <% end %>

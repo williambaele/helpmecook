@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :recipes
   resources :comments
+  get '/my-publications', to: 'pages#publications'
+
+
 
 end
