@@ -66,9 +66,13 @@
       <% @comments.each do |item| %>
         <article class="pl-4 mb-6 text-base">
           <div class="flex justify-between items-center mb-2">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2">
               <div class="inline-flex items-center mr-3 text-sm text-gray-900">
-                <img class="mr-2 w-6 h-6 rounded-full" src="https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg" alt="Michael Gough">
+                <% if item.user.photo.key.nil? %>
+                  <img class="mr-2 w-6 h-6 " src="https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg">
+                <% else %>
+                  <%= cl_image_tag item.user.photo.key , class:"object-cover mr-2 w-6 h-6" %>
+                <% end %>
                 <p class="text-xl">
                   <%= @author %>
                 </p>

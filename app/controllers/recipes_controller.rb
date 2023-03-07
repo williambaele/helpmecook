@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @author = @recipe.user.pseudo
-    @comments = @recipe.comments
+    @comments = @recipe.comments.includes(:user)
     @comment = Comment.new # Initialize @comment variable with a new Comment object
     @total_comments = @recipe.comments.count
     @rating_global = @comments.average(:rating) || 0
