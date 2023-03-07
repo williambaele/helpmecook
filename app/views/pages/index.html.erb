@@ -1,9 +1,9 @@
 <%= render 'shared/home-banner'%>
-<div class="flex justify-center items-center h-20">
+<div class="flex justify-center items-center h-20 mt-10">
   <h2 class="text-center text-gray-800 text-4xl font-medium">Check our last recipes</h2>
 </div>
 <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10">
-    <% @recipes.each do |item| %>
+    <% @recipes.order(created_at: :desc).limit(6).each do |item| %>
     <!-- RECIPE'S CARD -->
       <div class="overflow-hidden  shadow transition hover:shadow-lg">
         <%= link_to recipe_path(item) do %>
@@ -43,7 +43,7 @@
                 <%= item.title %>
               </h3>
               <p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-                <%= item.description %>
+                <%= item.description.truncate(100) %>
               </p>
             </div>
          <% end %>
