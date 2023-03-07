@@ -9,6 +9,9 @@ gem 'devise'
 #PG SEARCH
 gem 'pg_search'
 
+#Pundit
+gem 'pundit'
+
 #Cloudinary
 gem "cloudinary"
 
