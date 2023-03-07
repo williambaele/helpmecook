@@ -26,6 +26,14 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.destroy
+      flash[:success] = "Your item has been deleted"
+      redirect_to recipes_path
+    end
+  end
+
   def show
     @recipe = Recipe.find(params[:id])
     @author = @recipe.user.pseudo

@@ -58,9 +58,14 @@
               </div>
             </div>
           </div>
-          <%= link_to edit_recipe_path(item) do %>
-            <div class="bg-orange-600 absolute top-0 right-0 p-1.5 md:p-2 md:px-4 text-white font-medium cursor-pointer">Edit</div>
-          <% end %>
+          <div class="absolute top-0 right-0 flex gap-2">
+            <%= link_to edit_recipe_path(item) do %>
+              <div class="bg-orange-600 p-1.5 md:p-2 md:px-4 text-white font-medium cursor-pointer">Edit</div>
+            <% end %>
+            <%= link_to recipe_path(item), data: { turbo_method: :delete} do %>
+              <div class="bg-orange-600 p-1.5 md:p-2 md:px-4 text-white font-medium cursor-pointer">Delete</div>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
