@@ -9,12 +9,16 @@
     <% end %>
   </div>
   <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10">
-    <% @recipes.each do |item| %>
+    <% @recipes.order(created_at: :desc).each do |item| %>
     <!-- RECIPE'S CARD -->
       <div class="overflow-hidden  shadow transition hover:shadow-lg">
         <%= link_to recipe_path(item) do %>
-          <img alt="recipe" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
-            <div class="bg-white p-4 sm:p-6">
+          <% if item.photo.key.nil? %>
+            <img alt="recipe" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
+          <% else %>
+            <%= cl_image_tag item.photo.key, class:"h-56 w-full object-cover" %>
+          <% end %>
+          <div class="bg-white p-4 sm:p-6">
               <div class="flex gap-4 justify-start">
                 <div class="flex items-center gap-2 bg-orange-600 text-sm text-white px-2 py-1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
