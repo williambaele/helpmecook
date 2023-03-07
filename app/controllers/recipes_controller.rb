@@ -11,6 +11,21 @@ class RecipesController < ApplicationController
       @recipes
     end
   end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(items_params)
+      flash[:success] = "Your recipe has been updated"
+      redirect_to recipe_path(@recipe)
+    else
+      flash[:alert] = "Error ! Try again"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @recipe = Recipe.find(params[:id])
     @author = @recipe.user.pseudo
