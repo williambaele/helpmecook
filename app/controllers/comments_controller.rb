@@ -13,8 +13,8 @@ class CommentsController < ApplicationController
       flash[:success] = "Your comment has been posted"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = @comment.errors.full_messages
-      render :show, status: :unprocessable_entity
+      render "recipes/show", status: :unprocessable_entity
+      flash[:alert] = "Error: " + @recipe.errors.full_messages.join(", ")
     end
   end
 

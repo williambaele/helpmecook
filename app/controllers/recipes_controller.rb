@@ -53,7 +53,7 @@ class RecipesController < ApplicationController
       flash[:success] = "Your recipe has been created"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "Error ! Try again"
+      flash[:alert] = "Error: " + @recipe.errors.full_messages.join(", ")
       render :new, status: :unprocessable_entity
     end
   end
