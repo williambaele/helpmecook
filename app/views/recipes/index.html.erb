@@ -9,18 +9,41 @@
     <% end %>
   </div>
   <!-- FILTERS SECTION -->
+  <div class="bg-gray-200 flex justify-center p-4 mb-4 mt-6">
+   <h2 class="font-medium text-2xl">Filter on your way</h2>
+  </div>
   <div class="grid grid-cols-2 gap-2 md:flex justify-between px-4 md:px-0">
-    <div class="bg-orange-600 hover:bg-orange-500 px-6 py-2 cursor-pointer text-white flex justify-between items-center gap-x-6">
-      <p class="text-lg">People</p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-      </svg>
+    <div class="relative">
+      <div class="bg-orange-600 hover:bg-orange-500 px-6 py-2 cursor-pointer text-white flex justify-between items-center gap-x-6 dropdown-toggle">
+        <p class="text-lg">People</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </div>
+      <ul class="absolute top-full left-0 bg-white border border-gray-300 shadow-lg py-1 mt-1 w-full dropdown-menu hidden">
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">1 person</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">2 people</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">3 people</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">4 people</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">5 people</a></li>
+        <li><a href="#" class="block px-4 py-2 text-gray-600 hover:bg-gray-200">6+ people</a></li>
+      </ul>
     </div>
-    <div class="bg-orange-600 hover:bg-orange-500 px-6 py-2 cursor-pointer text-white flex justify-between items-center gap-x-6">
-      <p class="text-lg">Budget</p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-      </svg>
+    <div class="relative">
+      <div class="bg-orange-600 hover:bg-orange-500 px-6 py-2 cursor-pointer text-white flex justify-between items-center gap-x-6 dropdown-toggle" id="budget-filter">
+        <p class="text-lg">Budget</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+      </div>
+      <ul class="absolute top-full left-0 bg-white border border-gray-300 shadow-lg py-1 mt-1 w-full dropdown-menu hidden">
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="">All</a></li>
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="cheap">Cheap</a></li>
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="economic">Economic</a></li>
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="middle">Middle</a></li>
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="expensive">Expensive</a></li>
+        <li><a class="block px-4 py-2 text-gray-600 hover:bg-gray-200 budget-filter" data-budget="fancy">Fancy</a></li>
+      </ul>
     </div>
     <div class="bg-orange-600 hover:bg-orange-500 px-6 py-2 cursor-pointer text-white flex justify-between items-center gap-x-6">
       <p class="text-lg">Difficulty</p>
@@ -47,11 +70,10 @@
       </svg>
     </div>
   </div>
-
-  <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10">
+  <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10" id="recipe-cards">
     <% @recipes.order(created_at: :desc).each do |item| %>
     <!-- RECIPE'S CARD -->
-      <div class="overflow-hidden  shadow transition hover:shadow-lg">
+    <div class="overflow-hidden shadow transition hover:shadow-lg recipe-card <%= item.budget %>">
         <%= link_to recipe_path(item) do %>
           <% if item.photo.key.nil? %>
             <img alt="recipe" src="https://images.unsplash.com/photo-1612709863934-3bf69d759c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" class="h-56 w-full object-cover"/>
@@ -98,3 +120,40 @@
     <!-- END -->
   </div>
 </div>
+<script>
+  const dropdownToggle = document.querySelectorAll('.dropdown-toggle');
+  const dropdownMenu = document.querySelectorAll('.dropdown-menu');
+
+  dropdownToggle.forEach((toggle, index) => {
+    toggle.addEventListener('click', () => {
+      dropdownMenu[index].classList.toggle('hidden');
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    dropdownToggle.forEach((toggle, index) => {
+      if (!toggle.contains(event.target) && !dropdownMenu[index].contains(event.target)) {
+        dropdownMenu[index].classList.add('hidden');
+      }
+    });
+  });
+  $(document).ready(function(){
+      // Add a click event listener to the budget filter links
+      $(".budget-filter").click(function(){
+        // Get the budget value from the data-budget attribute of the clicked link
+        var budget = $(this).data("budget");
+
+        // Hide all recipe cards
+        $(".recipe-card").hide();
+
+        // If the budget value is "all", show all recipe cards
+        if (budget === "all") {
+          $(".recipe-card").show();
+        }
+        // Otherwise, show only recipe cards that have the selected budget value
+        else {
+          $("." + budget).show();
+        }
+      });
+    });
+</script>

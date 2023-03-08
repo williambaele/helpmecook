@@ -8,9 +8,13 @@ class RecipesController < ApplicationController
         flash[:alert] = "No results found for '#{params[:query]}'"
       end
     else
+      if params[:budget].present?
+        @recipes = @recipes.where(budget: params[:budget])
+      end
       @recipes
     end
   end
+
 
   def edit
     @recipe = Recipe.find(params[:id])
