@@ -15,15 +15,15 @@
   <div class="grid grid-cols-2 gap-2 md:flex justify-between px-4 md:px-0">
     <div>
       <div class="flex">
-        <%= form_tag recipes_path, method: :get, id: "people-filter-select" do %>
-          <%= select_tag :people, options_for_select(["How many people ?", "1", "2", "3", "4", "5", "6+"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900  text-sm block w-full p-2.5", id: "budget-select" %>
+        <%= form_tag recipes_path, method: :get, id: "people-filter-form" do %>
+          <%= select_tag :people, options_for_select(["How many people ?", "1", "2", "3", "4", "5", "6+"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900  text-sm block w-full p-2.5", id: "people-select" %>
           <%= submit_tag "Filter", style: "display:none;" %>
         <% end %>
       </div>
     </div>
     <div>
       <div class="flex">
-        <%= form_tag recipes_path, method: :get, id: "budget-filter-select" do %>
+        <%= form_tag recipes_path, method: :get, id: "budget-filter-form" do %>
           <%= select_tag :budget, options_for_select(["Select the budget", "Cheap", "Economic", "Middle", "Expensive", "Fancy"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900 text-sm block w-full p-2.5", id: "budget-select" %>
           <%= submit_tag "Filter", style: "display:none;" %>
         <% end %>
@@ -105,15 +105,11 @@
   </div>
 </div>
 <script>
-  const peopleSelect = document.getElementById("people");
-  const budgetSelect = document.getElementById("budget");
+    document.getElementById("people-select").addEventListener("change", function() {
+      document.getElementById("people-filter-form").submit();
+    });
 
-  peopleSelect.addEventListener("change", () => {
-    document.getElementById("people-filter-form").submit();
-  });
-
-  budgetSelect.addEventListener("change", () => {
-    document.getElementById("budget-filter-form").submit();
-  });
-
-</script>
+    document.getElementById("budget-select").addEventListener("change", function() {
+      document.getElementById("budget-filter-form").submit();
+    });
+  </script>
