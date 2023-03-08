@@ -6,4 +6,7 @@ class RecipePolicy < ApplicationPolicy
   def create?
     user.present?
   end
+  def edit?
+    user == record.user
+  end
 end
