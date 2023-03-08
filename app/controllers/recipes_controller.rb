@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+
   def index
     @recipes = Recipe.includes(:user)
     @total_recipes = Recipe.count
@@ -9,7 +10,34 @@ class RecipesController < ApplicationController
       end
     else
       if params[:budget].present?
-        @recipes = @recipes.where(budget: params[:budget])
+        case params[:budget]
+        when "Cheap"
+          @recipes = @recipes.where(budget: "Cheap")
+        when "Economic"
+          @recipes = @recipes.where(budget: "Economic")
+        when "Middle"
+          @recipes = @recipes.where(budget: "Middle")
+        when "Expensive"
+          @recipes = @recipes.where(budget: "Expensive")
+        when "Fancy"
+          @recipes = @recipes.where(budget: "Fancy")
+        end
+      elsif params[:people].present?
+        case params[:people]
+        when "1"
+          @recipes = @recipes.where(people: "1")
+        when "2"
+          @recipes = @recipes.where(people: "2")
+        when "3"
+          @recipes = @recipes.where(people: "3")
+        when "4"
+          @recipes = @recipes.where(people: "4")
+        when "5"
+          @recipes = @recipes.where(people: "5")
+        end
+        if @recipes.empty?
+          flash[:alert] = "No results found for #{params[:people]} people"
+        end
       end
       @recipes
     end
