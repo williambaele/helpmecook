@@ -30,6 +30,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.comments.destroy_all
+    authorize @recipe
     if @recipe.destroy
       flash[:success] = "Your item has been deleted"
       redirect_to my_publications_path
