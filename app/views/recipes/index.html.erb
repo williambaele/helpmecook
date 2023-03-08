@@ -15,7 +15,7 @@
   <div class="grid grid-cols-2 gap-2 md:flex justify-between px-4 md:px-0">
     <div>
       <div class="flex">
-        <%= form_tag recipes_path, method: :get, id: "people-filter-form" do %>
+        <%= form_tag recipes_path, method: :get, id: "people-filter-select" do %>
           <%= select_tag :people, options_for_select(["How many people ?", "1", "2", "3", "4", "5", "6+"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900  text-sm block w-full p-2.5", id: "budget-select" %>
           <%= submit_tag "Filter", style: "display:none;" %>
         <% end %>
@@ -23,7 +23,7 @@
     </div>
     <div>
       <div class="flex">
-        <%= form_tag recipes_path, method: :get, id: "budget-filter-form" do %>
+        <%= form_tag recipes_path, method: :get, id: "budget-filter-select" do %>
           <%= select_tag :budget, options_for_select(["Select the budget", "Cheap", "Economic", "Middle", "Expensive", "Fancy"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900 text-sm block w-full p-2.5", id: "budget-select" %>
           <%= submit_tag "Filter", style: "display:none;" %>
         <% end %>
@@ -105,25 +105,15 @@
   </div>
 </div>
 <script>
-  const dropdownToggle = document.querySelectorAll('.dropdown-toggle');
-  const dropdownMenu = document.querySelectorAll('.dropdown-menu');
+  const peopleSelect = document.getElementById("people");
+  const budgetSelect = document.getElementById("budget");
 
-  dropdownToggle.forEach((toggle, index) => {
-    toggle.addEventListener('click', () => {
-      dropdownMenu[index].classList.toggle('hidden');
-    });
+  peopleSelect.addEventListener("change", () => {
+    document.getElementById("people-filter-form").submit();
   });
 
-  document.addEventListener('click', (event) => {
-    dropdownToggle.forEach((toggle, index) => {
-      if (!toggle.contains(event.target) && !dropdownMenu[index].contains(event.target)) {
-        dropdownMenu[index].classList.add('hidden');
-      }
-    });
+  budgetSelect.addEventListener("change", () => {
+    document.getElementById("budget-filter-form").submit();
   });
-   const budgetSelect = document.getElementById("budget-select");
-  budgetSelect.addEventListener("change", function() {
-    const form = document.getElementById("recipe-filter-form");
-    form.submit();
-  });
+
 </script>
