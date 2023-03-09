@@ -1,6 +1,8 @@
 # HelMeCook 🍽
 The new application to help all cooking's beginner to find the perfect recipe !
 
+- Live 🖥 https://helpmecook.fly.dev/
+
 ## Account
 - Manage your data
   - Profile picture
