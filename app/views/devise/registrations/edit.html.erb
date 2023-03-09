@@ -6,7 +6,10 @@
           Edit your account
         </h1>
         <div class="justify-center flex mb-6">
-          <%= cl_image_tag current_user.photo.key , class:"object-cover max-h-40 w-fill" %>
+          <% if current_user.photo.key.nil? %>
+            <% else %>
+            <%= cl_image_tag current_user.photo.key , class:"object-cover max-h-40 w-fill" %>
+          <% end %>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div class="py-2 text-left">
