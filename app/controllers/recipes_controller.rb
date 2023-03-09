@@ -38,6 +38,19 @@ class RecipesController < ApplicationController
         if @recipes.empty?
           flash[:alert] = "No results found for #{params[:people]} people"
         end
+      elsif params[:recipe_type].present?
+        case params[:recipe_type]
+        when "Starter"
+          @recipes = @recipes.where(recipe_type: "Starter")
+        when "Lunch"
+          @recipes = @recipes.where(recipe_type: "Lunch")
+        when "Diner"
+          @recipes = @recipes.where(recipe_type: "Diner")
+        when "Dessert"
+          @recipes = @recipes.where(recipe_type: "Dessert")
+        when "Snack"
+          @recipes = @recipes.where(recipe_type: "Snack")
+        end
       end
       @recipes
     end
