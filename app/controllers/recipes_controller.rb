@@ -36,8 +36,31 @@ class RecipesController < ApplicationController
         when "5⭐️"
           @recipes = @recipes.where(people: "5")
         end
+      elsif params[:difficulty].present?
+        case params[:difficulty]
+        when "1"
+          @recipes = @recipes.where(difficulty: "1")
+        when "2"
+          @recipes = @recipes.where(difficulty: "2")
+        when "3"
+          @recipes = @recipes.where(difficulty: "3")
+        when "4"
+          @recipes = @recipes.where(difficulty: "4")
+        when "5"
+          @recipes = @recipes.where(difficulty: "5")
+        when "6"
+          @recipes = @recipes.where(difficulty: "6")
+        when "7"
+          @recipes = @recipes.where(difficulty: "7")
+        when "8"
+          @recipes = @recipes.where(difficulty: "8")
+        when "9"
+          @recipes = @recipes.where(difficulty: "9")
+        when "10"
+          @recipes = @recipes.where(difficulty: "10")
+        end
         if @recipes.empty?
-          flash[:alert] = "No results found for #{params[:people]} people"
+          flash[:alert] = "No results found for #{params[:difficulty]}/10 recipe"
         end
       elsif params[:rating].present?
         @recipes = @recipes.joins(:comments)
