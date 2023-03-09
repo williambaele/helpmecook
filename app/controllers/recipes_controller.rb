@@ -62,6 +62,17 @@ class RecipesController < ApplicationController
         if @recipes.empty?
           flash[:alert] = "No results found for #{params[:difficulty]}/10 recipe"
         end
+      elsif params[:time].present?
+        case params[:time]
+        when "Less than 10 minutes"
+          @recipes = @recipes.where("time < ?", 10)
+        when "Less than 20 minutes"
+          @recipes = @recipes.where("time < ?", 20)
+        when "Less than 30 minutes"
+          @recipes = @recipes.where("time < ?", 30)
+        when "Less than 1 hours"
+          @recipes = @recipes.where("time < ?", 60)
+        end
       elsif params[:rating].present?
         @recipes = @recipes.joins(:comments)
                            .group('recipes.id')
