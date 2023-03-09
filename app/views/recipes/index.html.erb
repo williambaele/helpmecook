@@ -16,7 +16,7 @@
     <div>
       <div class="flex">
         <%= form_tag recipes_path, method: :get, id: "people-filter-form" do %>
-          <%= select_tag :people, options_for_select(["People", "1", "2", "3", "4", "5", "6+"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900  text-sm block w-full p-2.5", id: "people-select" %>
+          <%= select_tag :people, options_for_select(["People", "1", "2", "3", "4", "5", "6+"]), class:"bg-gray-50 border-2 border-orange-600 text-gray-900  text-sm block w-full p-2.5", id: "people-select"  %>
           <%= submit_tag "Filter", style: "display:none;" %>
         <% end %>
       </div>
@@ -61,6 +61,9 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center my-4" id="delete-filter">
+    <button class="text-white bg-gray-400 px-8 py-1 text-sm">Delete filter</button>
   </div>
   <div class="flex grid sm:grid-cols-2 md:grid-cols-3 mx-auto container gap-4 my-8 px-4 md:px-0 md:mb-10">
     <% @recipes.order(created_at: :desc).each do |item| %>
@@ -113,23 +116,50 @@
   </div>
 </div>
 <script>
-    document.getElementById("people-select").addEventListener("change", function() {
-      document.getElementById("people-filter-form").submit();
-    });
+  // Hide the delete-filter div by default
+document.getElementById("delete-filter").style.display = "none";
 
-    document.getElementById("budget-select").addEventListener("change", function() {
-      document.getElementById("budget-filter-form").submit();
-    });
-    document.getElementById("type-select").addEventListener("change", function() {
-      document.getElementById("type-filter-form").submit();
-    });
-    document.getElementById("rating-select").addEventListener("change", function() {
-      document.getElementById("rating-filter-form").submit();
-    });
-     document.getElementById("difficulty-select").addEventListener("change", function() {
-      document.getElementById("difficulty-filter-form").submit();
-    });
-     document.getElementById("time-select").addEventListener("change", function() {
-      document.getElementById("time-filter-form").submit();
-    });
-  </script>
+// Add event listeners to all filter select tags
+document.querySelectorAll("select").forEach(select => {
+  select.addEventListener("change", function() {
+    // Show the delete-filter div when a filter is selected
+    document.getElementById("delete-filter").style.display = "block";
+    // Submit the form associated with the selected filter
+    this.form.submit();
+    // Update the visibility of the delete filter button
+    updateDeleteButtonVisibility();
+  });
+});
+
+// Add event listener to the delete-filter button
+document.querySelector("#delete-filter button").addEventListener("click", function() {
+  // Reset all filter select tags
+  document.querySelectorAll("select").forEach(select => {
+    select.selectedIndex = 0;
+  });
+  // Hide the delete-filter div
+  document.getElementById("delete-filter").style.display = "none";
+  // Submit the form to remove the filters
+  document.querySelectorAll("form").forEach(form => {
+    form.submit();
+  });
+  // Update the visibility of the delete filter button
+  updateDeleteButtonVisibility();
+});
+
+function updateDeleteButtonVisibility() {
+  var anyFilterSelected = false;
+  document.querySelectorAll("select").forEach(select => {
+    if (select.selectedIndex > 0) {
+      anyFilterSelected = true;
+    }
+  });
+  var deleteFilterButton = document.getElementById('delete-filter');
+  if (anyFilterSelected) {
+    deleteFilterButton.style.display = 'block';
+  } else {
+    deleteFilterButton.style.display = 'none';
+  }
+}
+
+</script>
