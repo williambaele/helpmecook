@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.includes(:user)
     @total_recipes = Recipe.count
+
     if params[:query].present?
       @recipes = Recipe.search_by_title_description(params[:query])
       if @recipes.empty?
@@ -24,20 +25,24 @@ class RecipesController < ApplicationController
         end
       elsif params[:people].present?
         case params[:people]
-        when "1"
+        when "1⭐️"
           @recipes = @recipes.where(people: "1")
-        when "2"
+        when "2⭐️"
           @recipes = @recipes.where(people: "2")
-        when "3"
+        when "3⭐️"
           @recipes = @recipes.where(people: "3")
-        when "4"
+        when "4⭐️"
           @recipes = @recipes.where(people: "4")
-        when "5"
+        when "5⭐️"
           @recipes = @recipes.where(people: "5")
         end
         if @recipes.empty?
           flash[:alert] = "No results found for #{params[:people]} people"
         end
+      elsif params[:rating].present?
+        @recipes = @recipes.joins(:comments)
+                           .group('recipes.id')
+                           .having('AVG(comments.rating) >= ?', params[:rating].to_i)
       elsif params[:recipe_type].present?
         case params[:recipe_type]
         when "Starter"
@@ -52,7 +57,6 @@ class RecipesController < ApplicationController
           @recipes = @recipes.where(recipe_type: "Snack")
         end
       end
-      @recipes
     end
   end
 
