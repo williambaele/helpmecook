@@ -25,16 +25,18 @@ class RecipesController < ApplicationController
         end
       elsif params[:people].present?
         case params[:people]
-        when "1⭐️"
+        when "1"
           @recipes = @recipes.where(people: "1")
-        when "2⭐️"
+        when "2"
           @recipes = @recipes.where(people: "2")
-        when "3⭐️"
+        when "3"
           @recipes = @recipes.where(people: "3")
-        when "4⭐️"
+        when "4"
           @recipes = @recipes.where(people: "4")
-        when "5⭐️"
+        when "5"
           @recipes = @recipes.where(people: "5")
+        when "6+"
+          @recipes = @recipes.where("people >= ?", 6)
         end
       elsif params[:difficulty].present?
         case params[:difficulty]
@@ -70,9 +72,10 @@ class RecipesController < ApplicationController
           @recipes = @recipes.where("time < ?", 20)
         when "Less than 30 minutes"
           @recipes = @recipes.where("time < ?", 30)
-        when "Less than 1 hours"
+        when "Less than 1 hour"
           @recipes = @recipes.where("time < ?", 60)
         end
+
       elsif params[:rating].present?
         @recipes = @recipes.joins(:comments)
                            .group('recipes.id')
